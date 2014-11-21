@@ -3,7 +3,7 @@
 // @namespace   InstaSynchP
 // @description List plugins, their version, info link and update notifications
 
-// @version     1
+// @version     1.0.1
 // @author      Zod-
 // @source      https://github.com/Zod-/InstaSynchP-Plugin-Manager
 // @license     MIT
@@ -27,7 +27,8 @@ function PluginManager(version) {
             'InstaSynchP Event Hooks': 'https://greasyfork.org/en/scripts/5651-instasynchp-event-hooks',
             'InstaSynchP CSSLoader': 'https://greasyfork.org/en/scripts/5718-instasynchp-cssloader',
             'InstaSynchP Settings': 'https://greasyfork.org/en/scripts/5719-instasynchp-settings',
-            'InstaSynchP Commands': 'https://greasyfork.org/en/scripts/6332-instasynchp-commands'
+            'InstaSynchP Commands': 'https://greasyfork.org/en/scripts/6332-instasynchp-commands',
+            'InstaSynchP Plugin Manager': 'https://greasyfork.org/en/scripts/6573-instasynchp-plugin-manager'
         },
         'Chat': {
             'InstaSynchP ModSpy': 'https://greasyfork.org/en/scripts/5962-instasynchp-modspy',
@@ -47,7 +48,7 @@ function PluginManager(version) {
     this.fields = [{
         'id': 'plugins-count',
         'type': 'hidden',
-        'value': '12'
+        'value': '13'
     }];
 }
 
@@ -300,4 +301,4 @@ PluginManager.prototype.save = function (close, refresh) {
 };
 
 window.plugins = window.plugins || {};
-window.plugins.pluginManager = new PluginManager('1');
+window.plugins.pluginManager = new PluginManager('1.0.1');
