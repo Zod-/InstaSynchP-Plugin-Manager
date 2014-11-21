@@ -1,0 +1,18 @@
+#plugin-manager {
+    color: white;
+    float: left;
+    padding-top: 5px;
+    padding-right: 5px;
+}
+#plugin-manager ul li a img {
+    top: 7px;
+}
+#update-notification {
+    float: right;
+    color: #F00;
+    font-weight: bolder;
+    position: relative;
+    text-shadow: -1px 0 #000, 0 2px #000, 1px 0 #000, 0 -1px #000;
+    bottom: 9px;
+    pointer-events: none;
+}
