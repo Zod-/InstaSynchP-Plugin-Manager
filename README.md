@@ -1,7 +1,33 @@
 InstaSynchP-Plugin-Manager
 ==========================
 
-List plugins, their version, info link and update notifications
+Disable/list plugins, their version, info link and update notifications.
+It will check for updates every 30 minutes by default which can be changed in the settings.
+
+Framework
+------
+Plugin Manager settings are stored in the `pgmc` object.
+#### `pgmc.get`
+Get the stored value
+```javascript
+pgmc.get('make-chat-visible')
+```
+#### `pgmc.set`
+Set the stored value from code.
+```javascript
+pgmc.set('make-chat-visible', false)
+```
+<b>Note: Setting the value does not save it. Use `window.plugins.pluginManager.save()` to save it.</b>
+
+#### `pluginManager.searchUpdates`
+Searches for new updates
+```javascript
+plugins.pluginManager.searchUpdates()
+```
+
+Settings
+--------
+*   Time between update checks
 
 License
 -----------
