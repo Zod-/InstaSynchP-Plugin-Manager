@@ -3,7 +3,7 @@
 // @namespace   InstaSynchP
 // @description List plugins, their version, info link and update notifications
 
-// @version     1.0.2
+// @version     1.0.3
 // @author      Zod-
 // @source      https://github.com/Zod-/InstaSynchP-Plugin-Manager
 // @license     MIT
@@ -45,11 +45,20 @@ function PluginManager(version) {
         },
         'all': {}
     };
+    this.settings = [{
+        'label': 'Check Updates Timer',
+        'id': 'update-timer',
+        'type': 'select',
+        'options': ['10m', '20m', '30m', '1h', 'on refresh'],
+        'default': '30m',
+        'section': ['General']
+    }];
     this.fields = [{
         'id': 'plugins-count',
         'type': 'hidden',
         'value': '13'
     }];
+    this.updateIntervalId = undefined;
 }
 
 PluginManager.prototype.executeOnce = function () {
@@ -74,7 +83,7 @@ PluginManager.prototype.executeOnce = function () {
                             'src': 'http://i.imgur.com/V3vOIkS.png'
                         })
                     ).append('Plugins').click(function () {
-                        $('#update-notification').css('display','none');
+                        $('#update-notification').css('display', 'none');
                         if (pgmc.isOpen) {
                             th.save(true);
                         } else {
@@ -82,22 +91,39 @@ PluginManager.prototype.executeOnce = function () {
                         }
                     })
                 ).append(
-                    $('<span>',{
+                    $('<span>', {
                         'id': 'update-notification'
-                    }).text('new update!').css('display','none')
+                    }).text('new update!').css('display', 'none')
                 )
             ).addClass('js')
         ).addClass('click-nav')
     );
+
+    function startTimer(setting) {
+        if (th.updateIntervalId) {
+            clearInterval(th.updateIntervalId);
+            th.updateIntervalId = undefined;
+        }
+        if (setting === 'on refresh') {
+            return;
+        }
+        th.updateIntervalId = setInterval(function () {
+            th.searchUpdates();
+        }, getTime(setting) * 1000);
+    }
+
+    events.on(th, 'SettingChange[update-timer]', function (ignore, newVal) {
+        th.searchUpdates();
+        startTimer(newVal);
+    });
+
+    startTimer(gmc.get('update-timer'));
 };
 
 PluginManager.prototype.executeOnceCore = function () {
     var th = this,
         plugin,
-        pluginName,
-        label,
-        count,
-        notify = false;
+        pluginName;
 
     //add a field for each plugin
     for (var section in th.plugins) {
@@ -154,6 +180,7 @@ PluginManager.prototype.executeOnceCore = function () {
                         }
                     });
 
+                    //add save & close button
                     $('#PGM_config_buttons_holder > :last-child', context).before(
                         $('#PGM_config_closeBtn', context).clone(false).attr({
                             id: 'PGM_config_save_closeBtn',
@@ -163,6 +190,7 @@ PluginManager.prototype.executeOnceCore = function () {
                         })
                     );
 
+                    //add save & refresh button
                     $('#PGM_config_buttons_holder > :last-child', context).before(
                         $('#PGM_config_closeBtn', context).clone(false).attr({
                             id: 'PGM_config_save_refreshBtn',
@@ -178,6 +206,8 @@ PluginManager.prototype.executeOnceCore = function () {
                             $(this).find('input[type="checkbox"]').attr('disabled', true);
                         }
                     });
+
+                    //remove update/install buttons on all but Core
                     $('#PGM_config .section_header_holder', context).each(function () {
                         if ($(this).children().eq(0).text() === 'Core') {
                             $(this).find('a').each(function () {
@@ -213,6 +243,7 @@ PluginManager.prototype.executeOnceCore = function () {
             }
         }
     });
+
     events.on(th, 'PluginManagerSaveInternal', function (data) {
         pgmc.save();
         if (data.close) {
@@ -222,6 +253,8 @@ PluginManager.prototype.executeOnceCore = function () {
             location.reload();
         }
     });
+
+    //check loaded plugins and disable them accordingly
     for (pluginName in window.plugins) {
         if (window.plugins.hasOwnProperty(pluginName)) {
             plugin = window.plugins[pluginName];
@@ -233,10 +266,24 @@ PluginManager.prototype.executeOnceCore = function () {
             th.plugins.all[plugin.name] = plugin;
         }
     }
+    th.searchUpdates();
+};
+
+PluginManager.prototype.searchUpdates = function () {
+    var th = this,
+        notify = false,
+        count = Object.keys(th.plugins.all).length;
+    //will only be true when page gets refreshed so pgmc.save can be used
+    //insead of this.save
+    if (parseInt(pgmc.get('plugins-count'), 10) !== count) {
+        notify = true;
+        pgmc.set('plugins-count', String(count));
+        pgmc.save();
+    }
 
     function doneLoading() {
-        if(notify){
-            $('#update-notification').css('display','initial');
+        if (notify) {
+            $('#update-notification').css('display', 'initial');
         }
     }
 
@@ -276,13 +323,7 @@ PluginManager.prototype.executeOnceCore = function () {
             }
         });
     }
-    count = Object.keys(th.plugins.all).length;
-    if (parseInt(pgmc.get('plugins-count'), 10) !== count) {
-        notify = true;
-        pgmc.set('plugins-count', String(count));
-        pgmc.save();
-    }
-    for (pluginName in th.plugins.all) {
+    for (var pluginName in th.plugins.all) {
         if (th.plugins.all.hasOwnProperty(pluginName)) {
             setLabel(th.plugins.all[pluginName].url);
         }
@@ -302,4 +343,4 @@ PluginManager.prototype.save = function (close, refresh) {
 };
 
 window.plugins = window.plugins || {};
-window.plugins.pluginManager = new PluginManager('1.0.2');
+window.plugins.pluginManager = new PluginManager('1.0.3');
