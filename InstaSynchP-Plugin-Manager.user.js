@@ -3,7 +3,7 @@
 // @namespace   InstaSynchP
 // @description List plugins, their version, info link and update notifications
 
-// @version     1.0.3
+// @version     1.0.4
 // @author      Zod-
 // @source      https://github.com/Zod-/InstaSynchP-Plugin-Manager
 // @license     MIT
@@ -41,7 +41,8 @@ function PluginManager(version) {
             'InstaSynchP Poll Menu': 'https://greasyfork.org/en/scripts/5868-instasynchp-poll-menu'
         },
         'Commands': {
-            'InstaSynchP Shuffle Command': 'https://greasyfork.org/en/scripts/6333-instasynchp-shuffle-command'
+            'InstaSynchP Shuffle Command': 'https://greasyfork.org/en/scripts/6333-instasynchp-shuffle-command',
+            'InstaSynchP Bump Command': 'https://greasyfork.org/en/scripts/6581-instasynchp-bump-command'
         },
         'all': {}
     };
@@ -56,7 +57,7 @@ function PluginManager(version) {
     this.fields = [{
         'id': 'plugins-count',
         'type': 'hidden',
-        'value': '13'
+        'value': '14'
     }];
     this.updateIntervalId = undefined;
 }
@@ -343,4 +344,4 @@ PluginManager.prototype.save = function (close, refresh) {
 };
 
 window.plugins = window.plugins || {};
-window.plugins.pluginManager = new PluginManager('1.0.3');
+window.plugins.pluginManager = new PluginManager('1.0.4');
