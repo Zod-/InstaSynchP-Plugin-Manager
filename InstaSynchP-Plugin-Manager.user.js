@@ -3,7 +3,7 @@
 // @namespace   InstaSynchP
 // @description List plugins, their version, info link and update notifications
 
-// @version     1.0.4
+// @version     1.0.5
 // @author      Zod-
 // @source      https://github.com/Zod-/InstaSynchP-Plugin-Manager
 // @license     MIT
@@ -297,7 +297,9 @@ PluginManager.prototype.searchUpdates = function () {
                 version = '',
                 info = '';
             //prepare the label for the settings
-            name = data.name.replace(/^InstaSynchP/i, '').replace(/Command$/i, '').trim();
+            name = "<span title='{0}'>{1}</span>";
+            name = name.format(data.description,
+                data.name.replace(/^InstaSynchP/i, '').replace(/Command$/i, '').trim());
             install = '<a style="color:#45FF00;font-weight: bolder;" href="{0}/{1}" target="_blank">{2}</a>'.format(url, 'code.user.js');
             info = '<a style="color:#196F9A;font-weight: bolder;" href="{0}" target="_blank">info</a>'.format(url);
             if (th.plugins.all[data.name].version) {
@@ -344,4 +346,4 @@ PluginManager.prototype.save = function (close, refresh) {
 };
 
 window.plugins = window.plugins || {};
-window.plugins.pluginManager = new PluginManager('1.0.4');
+window.plugins.pluginManager = new PluginManager('1.0.5');
