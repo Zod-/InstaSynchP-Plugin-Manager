@@ -3,7 +3,7 @@
 // @namespace   InstaSynchP
 // @description List plugins, their version, info link and update notifications
 
-// @version     1.0.6
+// @version     1.0.7
 // @author      Zod-
 // @source      https://github.com/Zod-/InstaSynchP-Plugin-Manager
 // @license     MIT
@@ -55,11 +55,7 @@ function PluginManager(version) {
         'default': '30m',
         'section': ['General']
     }];
-    this.fields = [{
-        'id': 'plugins-count',
-        'type': 'hidden',
-        'value': '14'
-    }];
+    this.fields = [];
     this.updateIntervalId = undefined;
 }
 
@@ -151,7 +147,12 @@ PluginManager.prototype.executeOnceCore = function () {
             }
         }
     }
-
+    //hidden value so we know when there is a new one
+    th.fields.push({
+        'id': 'plugins-count',
+        'type': 'hidden',
+        'value': String(Object.keys(th.plugins.all).length)
+    });
     window.pgmc = new GM_configStruct({
         'id': 'PGM_config',
         'title': 'InstaSynchP Plugin Manager',
@@ -298,9 +299,7 @@ PluginManager.prototype.searchUpdates = function () {
                 version = '',
                 info = '';
             //prepare the label for the settings
-            name = "<span title='{0}'>{1}</span>";
-            name = name.format(data.description,
-                data.name.replace(/^InstaSynchP/i, '').replace(/Command$/i, '').trim());
+            name = data.name.replace(/^InstaSynchP/i, '').replace(/Command$/i, '').trim();
             install = '<a style="color:#45FF00;font-weight: bolder;" href="{0}/{1}" target="_blank">{2}</a>'.format(url, 'code.user.js');
             info = '<a style="color:#196F9A;font-weight: bolder;" href="{0}" target="_blank">info</a>'.format(url);
             if (th.plugins.all[data.name].version) {
@@ -320,6 +319,32 @@ PluginManager.prototype.searchUpdates = function () {
             label.replace(/\s+/, ' ');
             //set the label
             pgmc.fields[data.name].settings.label = label;
+            pgmc.fields[data.name].settings.title = data.description;
+            //reload when GUI is open
+            pgmc.fields[data.name].reload();
+
+            //disabled checkboxes and remove update/install links
+            $('#PGM_config').each(function () {
+                var context = this.contentWindow.document || this.contentDocument;
+                //disable core checkboxes
+                $('#PGM_config .section_header_holder', context).each(function () {
+                    if ($(this).children().eq(0).text() === 'Core') {
+                        $(this).find('input[type="checkbox"]').attr('disabled', true);
+                    }
+                });
+
+                //remove update/install buttons on all but Core
+                $('#PGM_config .section_header_holder', context).each(function () {
+                    if ($(this).children().eq(0).text() === 'Core') {
+                        $(this).find('a').each(function () {
+                            if ($(this).parent().text().split(' ')[0].trim() !== 'Core' &&
+                                $(this).text().match(/^(update|install)$/ig)) {
+                                $(this).remove();
+                            }
+                        });
+                    }
+                });
+            });
 
             count -= 1;
             if (count === 0) {
@@ -347,4 +372,4 @@ PluginManager.prototype.save = function (close, refresh) {
 };
 
 window.plugins = window.plugins || {};
-window.plugins.pluginManager = new PluginManager('1.0.6');
+window.plugins.pluginManager = new PluginManager('1.0.7');
