@@ -297,11 +297,13 @@ PluginManager.prototype.searchUpdates = function () {
                 name = '',
                 install = '',
                 version = '',
-                info = '';
+                info = '',
+                feedback = '';
             //prepare the label for the settings
             name = data.name.replace(/^InstaSynchP/i, '').replace(/Command$/i, '').trim();
             install = '<a style="color:#45FF00;font-weight: bolder;" href="{0}/{1}" target="_blank">{2}</a>'.format(url, 'code.user.js');
             info = '<a style="color:#196F9A;font-weight: bolder;" href="{0}" target="_blank">info</a>'.format(url);
+            feedback = '<a style="color:#196F9A;font-weight: bolder;" href="{0}/{1}" target="_blank">{1}</a>'.format(url, 'feedback');
             if (th.plugins.all[data.name].version) {
                 version = '<span style="color:{1};font-weight: bolder;">v{0}</span>'.format(th.plugins.all[data.name].version);
                 if (th.plugins.all[data.name].version === data.version) {
@@ -315,7 +317,7 @@ PluginManager.prototype.searchUpdates = function () {
             } else {
                 install = install.format('', '', 'install');
             }
-            label = '{0} {1} {2} {3}'.format(name, version, install, info);
+            label = '{0} {1} {2} {3} {4}'.format(name, version, install, info, feedback);
             label.replace(/\s+/, ' ');
             //set the label
             pgmc.fields[data.name].settings.label = label;
