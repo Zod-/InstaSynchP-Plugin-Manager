@@ -3,7 +3,7 @@
 // @namespace   InstaSynchP
 // @description List plugins, their version, info link and update notifications
 
-// @version     1.0.8
+// @version     1.0.9
 // @author      Zod-
 // @source      https://github.com/Zod-/InstaSynchP-Plugin-Manager
 // @license     MIT
@@ -36,7 +36,8 @@ function PluginManager(version) {
             'InstaSynchP Input History': 'https://greasyfork.org/en/scripts/5654-instasynchp-input-history',
             'InstaSynchP Autocomplete': 'https://greasyfork.org/en/scripts/5859-instasynchp-autocomplete',
             'InstaSynchP Emote Names': 'https://greasyfork.org/en/scripts/5910-instasynchp-emote-names',
-            'InstaSynchP Name Completion': 'https://greasyfork.org/en/scripts/6708-instasynchp-name-completion'
+            'InstaSynchP Name Completion': 'https://greasyfork.org/en/scripts/6708-instasynchp-name-completion',
+            'InstaSynchP SysMessage Hide': 'https://greasyfork.org/en/scripts/7297-instasynchp-sysmessage-hide'
         },
         'General': {
             'InstaSynchP Layouts': 'https://greasyfork.org/en/scripts/5734-instasynchp-layouts',
@@ -375,4 +376,4 @@ PluginManager.prototype.save = function (close, refresh) {
 };
 
 window.plugins = window.plugins || {};
-window.plugins.pluginManager = new PluginManager('1.0.8');
+window.plugins.pluginManager = new PluginManager('1.0.9');
