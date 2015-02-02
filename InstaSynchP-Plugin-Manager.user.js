@@ -3,7 +3,7 @@
 // @namespace   InstaSynchP
 // @description List plugins, their version, info link and update notifications
 
-// @version     1.1.1
+// @version     1.1.2
 // @author      Zod-
 // @source      https://github.com/Zod-/InstaSynchP-Plugin-Manager
 // @license     MIT
@@ -47,9 +47,6 @@ function PluginManager(version) {
         'Commands': {
             'InstaSynchP Shuffle Command': 'https://greasyfork.org/en/scripts/6333-instasynchp-shuffle-command',
             'InstaSynchP Bump Command': 'https://greasyfork.org/en/scripts/6581-instasynchp-bump-command'
-        },
-        'Special': {
-            'InstaSynchP All': 'https://greasyfork.org/en/scripts/7849-instasynchp-all'
         },
         'all': {}
     };
@@ -380,4 +377,4 @@ PluginManager.prototype.save = function (close, refresh) {
 };
 
 window.plugins = window.plugins || {};
-window.plugins.pluginManager = new PluginManager('1.1.1');
+window.plugins.pluginManager = new PluginManager('1.1.2');
