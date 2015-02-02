@@ -50,7 +50,7 @@ function PluginManager(version) {
         },
         'Special': {
             'InstaSynchP All': 'https://greasyfork.org/en/scripts/7849-instasynchp-all'
-        }
+        },
         'all': {}
     };
     this.settings = [{
