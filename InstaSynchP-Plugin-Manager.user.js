@@ -126,11 +126,7 @@ PluginManager.prototype.executeOnceCore = function () {
             $('<link>', {
               'type': 'text/css',
               'rel': 'stylesheet',
-<<<<<<< ad6c59cf0f5df73708de38fa04ff5cdc2fce45b6
-              'href': 'https://cdn.rawgit.com/Zod-/InstaSynchP-Plugin-Manager/cdc223790a32cd743e7c26f8704dd5baeff59df0/PGMconfig.css'
-=======
               'href': 'https://rawgit.com/Zod-/InstaSynchP-Plugin-Manager/cdc223790a32cd743e7c26f8704dd5baeff59df0/PGMconfig.css'
->>>>>>> d9c7b8d182d1994d34776163183d64ff4db4e2e7
             })
           );
 
@@ -175,17 +171,6 @@ PluginManager.prototype.executeOnceCore = function () {
 
           //remove update/install buttons on all but Core
           $('#PGM_config .section_header_holder', context).each(function () {
-<<<<<<< ad6c59cf0f5df73708de38fa04ff5cdc2fce45b6
-            if ($(this).children().eq(0).text() !== 'Core') {
-              return;
-            }
-            $(this).find('a').each(function () {
-              if ($(this).parent().text().split(' ')[0].trim() !== 'Core' &&
-                $(this).text().match(/^(update|install)$/ig)) {
-                $(this).remove();
-              }
-            });
-=======
             if ($(this).children().eq(0).text() === 'Core') {
               $(this).find('a').each(function () {
                 if ($(this).parent().text().split(' ')[0].trim() !== 'Core' &&
@@ -194,7 +179,6 @@ PluginManager.prototype.executeOnceCore = function () {
                 }
               });
             }
->>>>>>> d9c7b8d182d1994d34776163183d64ff4db4e2e7
           });
         });
         $('#PGM_config').css('height', '90%').css('top', '55px').css('left', '5px').css('width', '375px');
