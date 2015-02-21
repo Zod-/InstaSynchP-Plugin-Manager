@@ -126,7 +126,7 @@ PluginManager.prototype.executeOnceCore = function () {
             $('<link>', {
               'type': 'text/css',
               'rel': 'stylesheet',
-              'href': 'https://rawgit.com/Zod-/InstaSynchP-Plugin-Manager/cdc223790a32cd743e7c26f8704dd5baeff59df0/PGMconfig.css'
+              'href': 'https://cdn.rawgit.com/Zod-/InstaSynchP-Plugin-Manager/cdc223790a32cd743e7c26f8704dd5baeff59df0/PGMconfig.css'
             })
           );
 
