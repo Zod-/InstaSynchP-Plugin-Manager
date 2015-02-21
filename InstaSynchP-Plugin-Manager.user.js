@@ -227,13 +227,12 @@ PluginManager.prototype.executeOnceCore = function () {
 PluginManager.prototype.searchUpdates = function () {
   "use strict";
   var th = this,
-    notify = false,
-    count = Object.keys(th.plugins).length;
+    notify = false;
   //will only be true when page gets refreshed so pgmc.save can be used
   //insead of this.save
-  if (parseInt(pgmc.get('plugins-count'), 10) !== count) {
+  if (parseInt(pgmc.get('plugins-count'), 10) !== th.plugins.length) {
     notify = true;
-    pgmc.set('plugins-count', String(count));
+    pgmc.set('plugins-count', String(th.plugins.length));
     pgmc.save();
   }
 
@@ -310,17 +309,13 @@ PluginManager.prototype.searchUpdates = function () {
         }
       });
     });
-
-    count -= 1;
-    if (count === 0) {
-      doneLoading();
-    }
   }
 
   $.getJSON('https://greasyfork.org/en/scripts.json?set=1666', function (data) {
     data.forEach(function (plugin) {
       setLabel(plugin.url, plugin);
     });
+    doneLoading();
   });
 
 };
