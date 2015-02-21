@@ -14,7 +14,7 @@
 // @run-at      document-start
 
 // @require     https://greasyfork.org/scripts/2855-gm-config/code/GM_config.js
-// @require     https://greasyfork.org/scripts/5647-instasynchp-library/code/InstaSynchP%20Library.js
+// @require     https://greasyfork.org/scripts/5647-instasynchp-library/code/InstaSynchP%20Library.js?version=37716
 // ==/UserScript==
 
 function PluginManager(version) {
