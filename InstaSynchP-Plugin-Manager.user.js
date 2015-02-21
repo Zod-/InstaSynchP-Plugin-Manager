@@ -45,7 +45,7 @@ PluginManager.prototype.executeOnce = function () {
   var th = this;
   cssLoader.add({
     'name': 'plugin-manager',
-    'url': 'https://rawgit.com/Zod-/InstaSynchP-Plugin-Manager/d3b79768a1545b2f4d6c595d543cc9b004fdbf63/pluginManager.css',
+    'url': 'https://cdn.rawgit.com/Zod-/InstaSynchP-Plugin-Manager/d3b79768a1545b2f4d6c595d543cc9b004fdbf63/pluginManager.css',
     'autoload': true
   });
 
@@ -125,7 +125,7 @@ PluginManager.prototype.executeOnceCore = function () {
             $('<link>', {
               'type': 'text/css',
               'rel': 'stylesheet',
-              'href': 'https://rawgit.com/Zod-/InstaSynchP-Plugin-Manager/cdc223790a32cd743e7c26f8704dd5baeff59df0/PGMconfig.css'
+              'href': 'https://cdn.rawgit.com/Zod-/InstaSynchP-Plugin-Manager/cdc223790a32cd743e7c26f8704dd5baeff59df0/PGMconfig.css'
             })
           );
 
