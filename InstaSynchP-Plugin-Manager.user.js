@@ -22,10 +22,11 @@ function PluginManager(version) {
   this.version = version;
   this.name = 'InstaSynchP Plugin Manager';
   this.pluginNames = {
-    'Core': ['Core', 'Event Hooks', 'CSSLoader', 'Settings', 'Commands', 'Plugin Manager'],
+    'Core': ['Core', 'Event Hooks', 'CSSLoader', 'Settings', 'Commands', 'Plugin Manager', 'Logger'],
     'Chat': ['ModSpy', 'UserSpy', 'Input History', 'Autocomplete', 'Emote Names', 'Name Completion', 'SysMessage Hide', 'Timestamp'],
-    'General': ['Layouts', 'Poll Menu'],
-    'Commands': ['Shuffle Command', 'Bump Command'],
+    'General': ['Layouts', 'Poll Menu', 'Bibby'],
+    'Commands': ['Shuffle Command', 'Bump Command', 'TrimWall'],
+    'Playlist': ['Wallcounter']
   };
   this.plugins = [];
   this.settings = [{
