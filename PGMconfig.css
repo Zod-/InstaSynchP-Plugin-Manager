@@ -1,57 +1,117 @@
+/* Thank you Catmosphere */
+
 #PGM_config .config_header {
-      font-size: 15pt;
-      color: #FFF;
-      text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
-      margin: 0 0 0 0px;
+  font-size: 15pt;
+  color: #333;
+  margin: 0 0 0 0px;
 }
 #PGM_config .config_var {
-      margin: 0 0 4 10px;
+  margin: 0 0 4 10px;
 }
 input[type="checkbox"] {
-      margin: 3px 3px 3px 0px;
+  margin: 3px 3px 3px 0px;
 }
 html {
-      background: #BBB;
-      opacity: 0.9
+  background: #BBB;
+  opacity: 0.9
 }
 #PGM_config {
-      background: #444444;
+  background: #CED0D2;
 }
 #PGM_config .section_header {
-      background: #2284B5;
-      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-      cursor: pointer;
+  background: #5D5D5D;
+  cursor: pointer;
+  padding: 5px;
 }
 #PGM_config .section_header:hover {
-      background: #196F9A;
-      transition: background-color 0.2s ease-in-out;
-      -webkit-transition: background-color 0.2s ease-in-out;
-      -moz-transition: background-color 0.2s ease-in-out;
+  background: #666;
+  transition: background-color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out;
+  -moz-transition: background-color 0.2s ease-in-out;
 }
 #PGM_config .section_desc {
-      cursor: pointer;
+  cursor: pointer;
+  padding: 5px;
 }
 #PGM_config .section_desc:hover {
-      background: #C9C9C9;
-      transition: background-color 0.2s ease-in-out;
-      -webkit-transition: background-color 0.2s ease-in-out;
-      -moz-transition: background-color 0.2s ease-in-out;
+  background: #fff;
+  transition: background-color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out;
+  -moz-transition: background-color 0.2s ease-in-out;
 }
 #PGM_config .field_label {
-      color: #FFF;
-      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color: #333;
 }
 #PGM_config .reset {
-      color: #FFF;
-      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-      padding-right: 12px;
+  color: #333;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857;
 }
 #PGM_config .radio_label {
-      font-size: 12px;
-      color: #FFF;
-      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-size: 12px;
+  color: #FFF;
 }
-
 #PGM_config .saveclose_buttons {
-    margin: 16px 1px 10px;
+  margin: 16px 1px 10px;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -moz-user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+#PGM_config_saveBtn {
+  color: #FFF;
+  background-color: #5CB85C;
+  border-color: #4CAE4C;
+}
+#PGM_config_closeBtn {
+  color: #FFF;
+  background-color: #C9302C;
+  border-color: #AC2925;
+}
+#PGM_config_closeBtn {
+  color: #FFF;
+  background-color: #C9302C;
+  border-color: #AC2925;
+}
+#PGM_config_save_closeBtn {
+  color: #FFF;
+  background-color: #286090;
+  border-color: #204D74;
+}
+#PGM_config_save_refreshBtn {
+  color: #FFF;
+  background-color: #286090;
+  border-color: #204D74;
+}
+.links {
+  font-weight: bolder;
+}
+.shadow {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.install_link {
+  color: #45FF00;
+}
+.info_link, .feedback_link {
+  color: #196F9A;
+}
+.current_version_link {
+  color: green;
+}
+.outdated_version_link {
+  color: #E02525;
 }
