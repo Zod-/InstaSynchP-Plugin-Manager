@@ -170,14 +170,15 @@ PluginManager.prototype.executeOnceCore = function () {
 
           //remove update/install buttons on all but Core
           $('#PGM_config .section_header_holder', context).each(function () {
-            if ($(this).children().eq(0).text() === 'Core') {
-              $(this).find('a').each(function () {
-                if ($(this).parent().text().split(' ')[0].trim() !== 'Core' &&
-                  $(this).text().match(/^(update|install)$/ig)) {
-                  $(this).remove();
-                }
-              });
+            if ($(this).children().eq(0).text() !== 'Core') {
+              return;
             }
+            $(this).find('a').each(function () {
+              if ($(this).parent().text().split(' ')[0].trim() !== 'Core' &&
+                $(this).text().match(/^(update|install)$/ig)) {
+                $(this).remove();
+              }
+            });
           });
         });
         $('#PGM_config').css('height', '90%').css('top', '55px').css('left', '5px').css('width', '375px');
@@ -299,14 +300,16 @@ PluginManager.prototype.searchUpdates = function () {
 
       //remove update/install buttons on all but Core
       $('#PGM_config .section_header_holder', context).each(function () {
-        if ($(this).children().eq(0).text() === 'Core') {
-          $(this).find('a').each(function () {
-            if ($(this).parent().text().split(' ')[0].trim() !== 'Core' &&
-              $(this).text().match(/^(update|install)$/ig)) {
-              $(this).remove();
-            }
-          });
+        if ($(this).children().eq(0).text() !== 'Core') {
+          return;
         }
+        $(this).find('a').each(function () {
+          if ($(this).parent().text().split(' ')[0].trim() !== 'Core' &&
+            $(this).text().match(/^(update|install)$/ig)) {
+            $(this).remove();
+          }
+        });
+
       });
     });
   }
