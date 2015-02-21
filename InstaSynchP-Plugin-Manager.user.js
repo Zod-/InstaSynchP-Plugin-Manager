@@ -51,7 +51,7 @@ PluginManager.prototype.executeOnce = function () {
 
   //add the button
   $('#plugin_manager').click(function () {
-    //$('#update-notification').css('display', 'none');
+    $('.updates').text('');
     if (pgmc.isOpen) {
       th.save(true);
     } else {
@@ -227,18 +227,18 @@ PluginManager.prototype.executeOnceCore = function () {
 PluginManager.prototype.searchUpdates = function () {
   "use strict";
   var th = this,
-    notify = false;
+    updatesCount = 0;
   //will only be true when page gets refreshed so pgmc.save can be used
   //insead of this.save
   if (parseInt(pgmc.get('plugins-count'), 10) !== th.plugins.length) {
-    notify = true;
+    updatesCount += Math.abs(th.plugins.length - parseInt(pgmc.get('plugins-count'), 10));
     pgmc.set('plugins-count', String(th.plugins.length));
     pgmc.save();
   }
 
   function doneLoading() {
-    if (notify) {
-      $('#update-notification').css('display', 'initial');
+    if (updatesCount > 0) {
+      $('.updates').text(updatesCount);
     }
   }
 
@@ -272,9 +272,9 @@ PluginManager.prototype.searchUpdates = function () {
         install = '';
         version = version.format('current_version_link');
       } else {
+        updatesCount += 1;
         install = install.format('', '', 'update');
         version = version.format('outdated_version_link');
-        notify = true;
       }
     } else {
       install = install.format('', '', 'install');
