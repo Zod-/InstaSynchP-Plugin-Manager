@@ -3,7 +3,7 @@
 // @namespace   InstaSynchP
 // @description List plugins, their version, info link and update notifications
 
-// @version     1.1.3
+// @version     1.1.4
 // @author      Zod-
 // @source      https://github.com/Zod-/InstaSynchP-Plugin-Manager
 // @license     MIT
@@ -25,7 +25,7 @@ function PluginManager(version) {
     'Core': ['Core', 'Event Hooks', 'CSSLoader', 'Settings', 'Commands', 'Plugin Manager', 'Logger'],
     'Chat': ['ModSpy', 'UserSpy', 'Input History', 'Autocomplete', 'Emote Names', 'Name Completion', 'SysMessage Hide', 'Timestamp'],
     'General': ['Layouts', 'Poll Menu', 'Bibby'],
-    'Commands': ['Shuffle Command', 'Bump Command', 'TrimWall'],
+    'Commands': ['Shuffle', 'Bump', 'TrimWall'],
     'Playlist': ['Wallcounter']
   };
   this.plugins = [];
@@ -85,10 +85,16 @@ PluginManager.prototype.executeOnceCore = function () {
   "use strict";
   var th = this,
     plugin,
-    pluginName;
+    pluginName,
+    section;
 
   function createPluginField(name, index) {
-      var fullName = 'InstaSynchP {0}'.format(name);
+      var fullName;
+      if(section === 'Commands'){
+        fullName ='InstaSynchP {0} Command'.format(name);
+      }else{
+        fullName ='InstaSynchP {0}'.format(name);
+      }
       th.pluginNames[section][index] = fullName;
       th.fields.push({
         'id': fullName,
@@ -99,7 +105,7 @@ PluginManager.prototype.executeOnceCore = function () {
       });
     }
     //add a field for each plugin
-  for (var section in th.pluginNames) {
+  for (section in th.pluginNames) {
     if (!th.pluginNames.hasOwnProperty(section)) {
       continue;
     }
@@ -337,4 +343,4 @@ PluginManager.prototype.save = function (close, refresh) {
 };
 
 window.plugins = window.plugins || {};
-window.plugins.pluginManager = new PluginManager('1.1.3');
+window.plugins.pluginManager = new PluginManager('1.1.4');
