@@ -87,7 +87,7 @@ PluginManager.prototype.executeOnceCore = function () {
     pluginName;
 
   function createPluginField(name, index) {
-      fullName = 'InstaSynchP {0}'.format(name);
+      var fullName = 'InstaSynchP {0}'.format(name);
       th.pluginNames[section][index] = fullName;
       th.fields.push({
         'id': fullName,
