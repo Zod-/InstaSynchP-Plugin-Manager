@@ -90,10 +90,10 @@ PluginManager.prototype.executeOnceCore = function () {
 
   function createPluginField(name, index) {
       var fullName;
-      if(section === 'Commands'){
-        fullName ='InstaSynchP {0} Command'.format(name);
-      }else{
-        fullName ='InstaSynchP {0}'.format(name);
+      if (section === 'Commands') {
+        fullName = 'InstaSynchP {0} Command'.format(name);
+      } else {
+        fullName = 'InstaSynchP {0}'.format(name);
       }
       th.pluginNames[section][index] = fullName;
       th.fields.push({
