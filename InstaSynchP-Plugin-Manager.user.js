@@ -3,7 +3,7 @@
 // @namespace   InstaSynchP
 // @description List plugins, their version, info link and update notifications
 
-// @version     1.1.4
+// @version     1.1.5
 // @author      Zod-
 // @source      https://github.com/Zod-/InstaSynchP-Plugin-Manager
 // @license     MIT
@@ -24,7 +24,7 @@ function PluginManager(version) {
   this.pluginNames = {
     'Core': ['Core', 'Event Hooks', 'CSSLoader', 'Settings', 'Commands', 'Plugin Manager', 'Logger'],
     'Chat': ['ModSpy', 'UserSpy', 'Input History', 'Autocomplete', 'Emote Names', 'Name Completion', 'SysMessage Hide', 'Timestamp'],
-    'General': ['Layouts', 'Poll Menu', 'Bibby'],
+    'General': ['Layouts', 'Poll Menu', 'Bibby', 'Persistent Settings'],
     'Commands': ['Shuffle', 'Bump', 'TrimWall'],
     'Playlist': ['Wallcounter']
   };
@@ -343,4 +343,4 @@ PluginManager.prototype.save = function (close, refresh) {
 };
 
 window.plugins = window.plugins || {};
-window.plugins.pluginManager = new PluginManager('1.1.4');
+window.plugins.pluginManager = new PluginManager('1.1.5');
