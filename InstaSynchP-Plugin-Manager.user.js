@@ -3,7 +3,7 @@
 // @namespace   InstaSynchP
 // @description List plugins, their version, info link and update notifications
 
-// @version     1.1.6
+// @version     1.1.7
 // @author      Zod-
 // @source      https://github.com/Zod-/InstaSynchP-Plugin-Manager
 // @license     MIT
@@ -39,17 +39,16 @@ function PluginManager(version) {
   }];
   this.fields = [];
   this.updateIntervalId = undefined;
+  this.styles = [{
+    'name': 'plugin-manager',
+    'url': 'https://cdn.rawgit.com/Zod-/InstaSynchP-Plugin-Manager/d3b79768a1545b2f4d6c595d543cc9b004fdbf63/pluginManager.css',
+    'autoload': true
+  }];
 }
 
 PluginManager.prototype.executeOnce = function () {
   "use strict";
   var th = this;
-  cssLoader.add({
-    'name': 'plugin-manager',
-    'url': 'https://cdn.rawgit.com/Zod-/InstaSynchP-Plugin-Manager/d3b79768a1545b2f4d6c595d543cc9b004fdbf63/pluginManager.css',
-    'autoload': true
-  });
-
   //add the button
   $('#plugin_manager').click(function () {
     $('.updates').text('');
@@ -343,4 +342,4 @@ PluginManager.prototype.save = function (close, refresh) {
 };
 
 window.plugins = window.plugins || {};
-window.plugins.pluginManager = new PluginManager('1.1.6');
+window.plugins.pluginManager = new PluginManager('1.1.7');
